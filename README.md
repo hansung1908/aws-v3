@@ -20,7 +20,7 @@
 - 키 페어는 기존에 사용하던 키 페어중 하나 선택
 - 이 다음 선택 사항 과정은 검토 단계로 건너뛰기로 생략 후 제출
 
-### 배포
+### 앨라스틱 빈 스톡 배포
 - 먼저 배포를 위한 jar 파일 생성을 위해 터미널에 해당 명령어 입력 
 ```shell
 ./gradlew clean build
@@ -28,3 +28,15 @@
 - 실행 후 build/libs 경로에 jar 파일 생성됨
 - 엘라스틱 빈스톡에서 생성한 환경에 jar 파일 업로드 및 배포
 - 도메인 주소 + /aws/v3를 입력하여 동작 확인
+
+### 앨라스틱 빈 스톡 접속
+- mobaxterm을 이용해 ssh 접속
+- 앨라스틱 빈 스톡에서 username은 ec2-user로 설정
+- 주요 프록시 설정들은 해당 경로 파일에 있음
+```shell
+cd /etc/nginx/conf.d/elasticbeanstalk
+
+vi 00_application.conf
+```
+- 내부 내용에서 location /는 내부에서 ip주소/로 요청이 오면 아래 설정들을 참고한다는 트리거
+- 이때 proxy_pass를 참고하여 해당 포트로 접속
